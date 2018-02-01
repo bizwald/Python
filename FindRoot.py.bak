@@ -27,14 +27,14 @@ import sys
 #   Start with y = 0.5 * x ** 2 - x - 1.5 and target roots -1 and 3
 #   Another example y = 1.2 * x ** 3 + 0.7 x ** 2 - 2 * x + 3 with root around -2
 
-crit = 1e-9 # on y
-ixl = 0.5
-ixr = 4
+crit = 0.00000001 # on y
+ixl = -3
+ixr = 0
 
 #   Define the function
 # y = 0.5 * x **2 - x - 1.5
 def yFunc(x):
-    y = 0.5 * x ** 2 - x - 1.5  #   <<<=== FUNCTION y of x <<<===
+    y = 1.2 * x ** 3 + 0.7 * x ** 2 - 2 * x + 3  #   <<<=== FUNCTION y of x <<<===
     return y
 
 # Initial interval and function value
@@ -72,29 +72,4 @@ while (math.fabs(y) > crit):
     y = yFunc(x)
     #   print("y = " + str(y) + " - and x = " + str(x))
 
-#   Produce plot of results
-import numpy as np
-import matplotlib
-matplotlib.use('SVG')
-import matplotlib.pyplot as plt
-
-xp = np.arange(x - 1.5, x + 1.5, 0.1)
-yp = yFunc(xp)
-
-fig, ax = plt.subplots()
-ax.plot(xp, yp, 'k--', label='function')
-ax.plot(x, y, 'bo', label='root')
-
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('Function: y = 0.5x ^ 2 - x - 1.5')
-
-legend = ax.legend(loc='upper left', shadow=True, fontsize='medium')
-legend.get_frame().set_facecolor('#EFEFEF')
-plt.grid(True)
-
-plt.savefig('Plot_Fnc_Rt_bi.svg')
-plt.show()
-
 print("y = " + str(y) + " and x = " + str(x))
-print("Convergence in " + str(cycles) + " cycles.")
